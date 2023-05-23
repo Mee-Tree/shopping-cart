@@ -1,0 +1,29 @@
+name: Scala CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: coursier/cache-action@v6
+    - uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '11'
+    - name: Formatting
+      run: sbt 'scalafmtCheckAll; scalafixAll --check'
+    - name: Running unit tests
+      run: sbt test
+    - name: Starting up Postgres & Redis
+      run: docker-compose up -d
+    - name: Running integration tests
+      run: sbt it:test
+    - name: Shutting down Postgres & Redis
+      run: docker-compose down
