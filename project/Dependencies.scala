@@ -21,7 +21,7 @@ object Dependencies {
     val squants           = "1.8.3"
 
     // Logging
-    val logback  = "1.4.7"
+    val logback  = "1.4.8"
     val log4cats = "2.6.0"
 
     // Testing
