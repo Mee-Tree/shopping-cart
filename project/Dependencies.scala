@@ -25,7 +25,7 @@ object Dependencies {
     val log4cats = "2.6.0"
 
     // Testing
-    val weaver = "0.8.3"
+    val weaver = "0.8.4"
 
     // Scalafix
     val `organize-imports` = "0.6.0"
