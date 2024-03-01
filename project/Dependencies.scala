@@ -32,7 +32,7 @@ object Dependencies {
 
     // Compiler plugins
     val `better-monadic-for` = "0.3.1"
-    val `kind-projector`     = "0.13.2"
+    val `kind-projector`     = "0.13.3"
 
   }
 
