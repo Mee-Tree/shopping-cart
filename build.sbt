@@ -1,7 +1,7 @@
 import Dependencies._
 
 ThisBuild / organization := "dev.meetree"
-ThisBuild / scalaVersion := "2.13.10"
+ThisBuild / scalaVersion := "2.13.13"
 ThisBuild / version      := "0.1.0"
 
 ThisBuild / evictionErrorLevel := Level.Warn
