@@ -3,7 +3,6 @@ package dev.meetree.shop.domain
 import derevo.cats.{ eqv, show }
 import derevo.circe.magnolia.{ decoder, encoder }
 import derevo.derive
-import eu.timepit.refined.auto.autoUnwrap
 import io.estatico.newtype.macros.newtype
 
 import java.util.UUID
