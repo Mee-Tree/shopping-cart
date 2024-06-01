@@ -22,7 +22,7 @@ object Dependencies {
 
     // Logging
     val logback  = "1.4.14"
-    val log4cats = "2.6.0"
+    val log4cats = "2.7.0"
 
     // Testing
     val weaver = "0.8.4"
