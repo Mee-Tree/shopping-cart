@@ -4,17 +4,19 @@ import cats.effect.IO
 import cats.implicits._
 import fs2.Stream
 import io.circe._
+import io.circe.jawn.CirceSupportParser
 import io.circe.syntax._
 import org.http4s._
 import org.http4s.client.Client
 import org.http4s.implicits._
+import org.typelevel.jawn.Facade
 import org.typelevel.jawn.fs2._
 import weaver.scalacheck.Checkers
 import weaver.{ Expectations, SimpleIOSuite }
 
 trait HttpStreamSuite extends SimpleIOSuite with Checkers {
 
-  private implicit val facade = new io.circe.jawn.CirceSupportParser(None, false).facade
+  private implicit val facade: Facade[Json] = new CirceSupportParser(None, false).facade
 
   def jsonStream(routes: HttpRoutes[IO])(req: Request[IO]): Stream[IO, Json] =
     Client

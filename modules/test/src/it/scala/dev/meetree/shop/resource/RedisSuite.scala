@@ -8,6 +8,7 @@ import dev.profunktor.redis4cats.log4cats.log4CatsInstance
 import dev.profunktor.redis4cats.{ Redis, RedisCommands }
 import eu.timepit.refined.auto._
 import fs2.Stream
+import org.typelevel.log4cats.SelfAwareStructuredLogger
 import org.typelevel.log4cats.noop.NoOpLogger
 import pdi.jwt.{ JwtAlgorithm, JwtClaim }
 
@@ -29,7 +30,7 @@ import dev.meetree.suite.ResourceSuite
 
 object RedisSuite extends ResourceSuite {
 
-  implicit val logger = NoOpLogger[IO]
+  implicit val logger: SelfAwareStructuredLogger[IO] = NoOpLogger[IO]
 
   type Res = RedisCommands[IO, String, String]
 

@@ -4,6 +4,7 @@ import cats.data.NonEmptyList
 import cats.effect.IO
 import cats.effect.kernel.Ref
 import cats.syntax.all._
+import org.typelevel.log4cats.SelfAwareStructuredLogger
 import org.typelevel.log4cats.noop.NoOpLogger
 import retry.RetryDetails.{ GivingUp, WillDelayAndRetry }
 import retry.RetryPolicies.limitRetries
@@ -22,7 +23,7 @@ import dev.meetree.shop.domain.cart.{ Cart, CartItem, CartTotal, Quantity }
 import dev.meetree.shop.domain.item.ItemId
 import dev.meetree.shop.domain.order.{ EmptyCartError, Order, OrderError, OrderId, PaymentError, PaymentId }
 import dev.meetree.shop.domain.payment.Payment
-import dev.meetree.shop.effect.TestBackground
+import dev.meetree.shop.effect.{ Background, TestBackground }
 import dev.meetree.shop.generators.{ cardArb, cartTotalArb, orderIdArb, paymentIdArb, userIdArb }
 import dev.meetree.shop.http.client.PaymentClient
 import dev.meetree.shop.retry.TestRetry
@@ -91,8 +92,8 @@ object CheckoutSuite extends SimpleIOSuite with Checkers {
       IO.pure(orderId)
   }
 
-  implicit val bg = TestBackground.NoOp
-  implicit val lg = NoOpLogger[IO]
+  implicit val bg: Background[IO]                = TestBackground.NoOp
+  implicit val lg: SelfAwareStructuredLogger[IO] = NoOpLogger[IO]
 
   test("empty cart") {
     forall { (uid: UserId, pid: PaymentId, oid: OrderId, c: Card) =>

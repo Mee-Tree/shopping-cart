@@ -5,8 +5,8 @@ import cats.effect.std.Supervisor
 import cats.effect.{ IO, IOApp }
 import dev.profunktor.redis4cats.log4cats.log4CatsInstance
 import org.http4s.server.Server
-import org.typelevel.log4cats.Logger
 import org.typelevel.log4cats.slf4j.Slf4jLogger
+import org.typelevel.log4cats.{ Logger, SelfAwareStructuredLogger }
 
 import dev.meetree.shop.config.Config
 import dev.meetree.shop.config.types.AppConfig
@@ -16,7 +16,7 @@ import dev.meetree.shop.resource.{ AppResources, MkHttpServer }
 
 object Main extends IOApp.Simple {
 
-  implicit val logger = Slf4jLogger.getLogger[IO]
+  implicit val logger: SelfAwareStructuredLogger[IO] = Slf4jLogger.getLogger[IO]
 
   private def app(cfg: AppConfig)(implicit bg: Background[IO]): Resource[IO, Server] =
     for {
