@@ -5,9 +5,10 @@ ThisBuild / scalaVersion := "2.13.10"
 ThisBuild / version      := "0.1.0"
 
 ThisBuild / evictionErrorLevel := Level.Warn
-ThisBuild / scalafixDependencies ++= Libs.scalafix
-ThisBuild / semanticdbEnabled  := true
-ThisBuild / semanticdbVersion  := scalafixSemanticdb.revision
+ThisBuild / libraryDependencySchemes ++= Schemes.all
+
+ThisBuild / semanticdbEnabled := true
+ThisBuild / semanticdbVersion := scalafixSemanticdb.revision
 
 lazy val commons = Seq(
   fork      := true,

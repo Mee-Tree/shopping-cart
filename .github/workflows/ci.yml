@@ -24,6 +24,6 @@ jobs:
     - name: Starting up Postgres & Redis
       run: docker-compose up -d
     - name: Running integration tests
-      run: sbt it:test
+      run: sbt IntegrationTest/test
     - name: Shutting down Postgres & Redis
       run: docker-compose down
