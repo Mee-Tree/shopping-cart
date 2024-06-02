@@ -1,6 +1,7 @@
 package dev.meetree.shop.resource
 
 import cats.effect.kernel.{ Async, Resource }
+import fs2.io.net.Network
 import org.http4s.HttpApp
 import org.http4s.ember.server.EmberServerBuilder
 import org.http4s.server.Server
@@ -24,7 +25,7 @@ object MkHttpServer {
       |""".stripMargin
     )
 
-  implicit def forAsyncLogger[F[_]: Async: Logger]: MkHttpServer[F] =
+  implicit def forAsyncLogger[F[_]: Async: Logger: Network]: MkHttpServer[F] =
     new MkHttpServer[F] {
       def newEmber(config: HttpServerConfig, httpApp: HttpApp[F]): Resource[F, Server] =
         EmberServerBuilder
