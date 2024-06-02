@@ -27,9 +27,6 @@ object Dependencies {
     // Testing
     val weaver = "0.8.4"
 
-    // Scalafix
-    val `organize-imports` = "0.6.0"
-
     // Compiler plugins
     val `better-monadic-for` = "0.3.1"
     val `kind-projector`     = "0.13.3"
@@ -101,9 +98,6 @@ object Dependencies {
     val `weaver-discipline`  = weaver("discipline")
     val `weaver-cats`        = weaver("cats")
 
-    // Scalafix
-    val `organize-imports` = "com.github.liancheng" %% "organize-imports" % V.`organize-imports`
-
     val core = Seq(
       `cats-core`,
       `cats-effect`,
@@ -148,8 +142,6 @@ object Dependencies {
       `log4cats-noop`
     )
       .map(_ % Test)
-
-    val scalafix = Seq(`organize-imports`)
   }
 
   object CompilerPlugins {
@@ -161,5 +153,11 @@ object Dependencies {
       .map(compilerPlugin)
 
     val test = core
+  }
+
+  object Schemes {
+    val `circe-core` = Libs.`circe-core` withRevision VersionScheme.Always
+
+    val all = Seq(`circe-core`)
   }
 }

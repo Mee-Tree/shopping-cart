@@ -70,7 +70,7 @@ sealed abstract class HttpApi[F[_]: Async] private (
   private val middleware: HttpRoutes[F] => HttpRoutes[F] =
     chain(
       AutoSlash(_),
-      CORS(_),
+      CORS.policy(_),
       Timeout(60.seconds)(_)
     )
 
