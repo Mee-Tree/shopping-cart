@@ -9,7 +9,7 @@ object Dependencies {
     val circe             = "0.14.7"
     val ciris             = "2.3.3"
     val derevo            = "0.13.0"
-    val fs2               = "3.10.2"
+    val fs2               = "3.11.0"
     val http4s            = "0.23.1"
     val `http4s-jwt-auth` = "1.2.2"
     val `javax-crypto`    = "1.0.1"
