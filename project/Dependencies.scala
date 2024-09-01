@@ -13,7 +13,7 @@ object Dependencies {
     val http4s            = "0.23.1"
     val `http4s-jwt-auth` = "1.2.2"
     val `javax-crypto`    = "1.0.1"
-    val monocle           = "3.2.0"
+    val monocle           = "3.3.0"
     val newtype           = "0.4.4"
     val redis4cats        = "1.4.3"
     val refined           = "0.11.1"
